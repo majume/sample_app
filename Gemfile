@@ -24,7 +24,7 @@ gem 'rails', '4.0.2'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
-#gem 'bootstrap-sass', '2.3.2.0'  #?why need
+gem 'bootstrap-sass', '2.3.2.0'  # adding bootstrap facilitation of HTML5 
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '2.1.1'
@@ -48,6 +48,8 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
+
+
 
 # Use ActiveModel has_secure_password
  #gem 'bcrypt-ruby', '~> 3.1.2'
