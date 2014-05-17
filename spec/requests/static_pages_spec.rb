@@ -59,7 +59,8 @@ describe "StaticPages" do
   describe "Contact Page" do
     it "should have the content 'Contact'" do
       visit contact_path
-      expect(page).to have_content("Contact")
+      # expect(page).to have_content("Contact")
+      expect(page).to have_selector('h1', text: 'Contact')
     end
 
     it "should have the title 'Contact" do
