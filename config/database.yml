@@ -31,3 +31,4 @@ production:
   reconnect: false
   min_messages: ERROR
   timeout: 5000
+
