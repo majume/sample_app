@@ -16,6 +16,8 @@ gem 'rails', '4.0.2'
 			gem 'selenium-webdriver', '2.35.1'  # capybara dependency
 			gem 'capybara', '2.1.0' #Simulate users BEHAVIOR.
 			gem 'spork-rails', '4.0.0'  #If spork loaded
+			# FactoryGirl is gem to help create Active Record Objects in testing environment
+			gem 'factory_girl_rails', '4.2.1'
 		end
 
 		group :production do
@@ -52,6 +54,7 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
+
 
 
 
