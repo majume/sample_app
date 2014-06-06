@@ -1,3 +1,4 @@
+source 'http://mirror1.prod.rhcloud.com/mirror/ruby/'  # Top before any other source
 source 'https://rubygems.org'
 #ruby '2.0.0'
 

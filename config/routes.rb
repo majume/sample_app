@@ -1,5 +1,10 @@
 SampleApp::Application.routes.draw do
   resources :users
+    get '/signup' => 'users#new'
+  resources :sessions, only: [:new, :create, :destroy]  
+    get '/signin' => 'sessions#new'
+    delete 'signout' => 'sessions#destroy'
+
   
   # get "static_pages/home"
   # get "static_pages/help"
@@ -9,7 +14,7 @@ SampleApp::Application.routes.draw do
   get '/help' => 'static_pages#help'
   get '/about' => 'static_pages#about'
   get '/contact' => 'static_pages#contact'
-  get '/signup' => 'users#new'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
