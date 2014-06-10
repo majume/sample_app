@@ -12,6 +12,27 @@ describe "UserPages" do
 		  it { should have_title(user.name) }
 	end
 
+	describe "edit" do
+		# Create user variable - using FactoryGirl
+		let(:user) {FactoryGirl.create(:user)}
+		before {visit edit_user_path(user)}
+
+		describe "edit page" do
+			it { should have_content("Update your profile")}
+			it { should have_title("Edit user")}
+			it { should have_link('change', href: 'http://gravatar.com/emails')}
+				# if you poke around the Gravatar site, you’ll see that the page 
+				# to add or edit images is located at http://gravatar.com/emails, 
+				# so we test the edit page 
+		end
+
+		describe "with invalid information" do
+			before { click_button "Save changes"}
+
+			it {should have_content('error')}
+		end
+	end
+
 	describe "signup page" do
 		# before {visit signup_path}
 		# 	it {should have_content('Sign up')}  
