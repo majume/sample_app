@@ -1,8 +1,12 @@
 class UsersController < ApplicationController
-  before_action :signed_in_user, only: [:edit, :update]
+  before_action :signed_in_user, only: [:edit, :update, :index]
     # AUTHORIZATION: Making sure that user is signed in,by running the 
       # signed_in_user function (private function below) before  'edit', and 'update' actions
   before_action :correct_user, only: [:edit, :update]
+
+  def index
+    @users = User.all
+  end
 
   def new
   	@user = User.new
@@ -38,6 +42,7 @@ class UsersController < ApplicationController
   	@user = User.new(user_params)
   	if @user.save
       sign_in @user
+      redirect_back_or user
   		flash[:success] = "Welcome to the Sample App"
   		redirect_to @user  # Assumes user_path @user as no other GET <something> :id path
   	else
@@ -52,6 +57,7 @@ class UsersController < ApplicationController
 
     def signed_in_user
       unless signed_in?
+        store_location  # Method in session_helper.rb inserting url of page
         flash[:notice] = "Please sign in."
         redirect_to signin_url
       end

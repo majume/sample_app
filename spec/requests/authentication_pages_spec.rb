@@ -33,6 +33,7 @@ describe "Authentication" do
   		it {should have_link('Profile', href: user_path(user))}
       it { should have_link('Settings', href: edit_user_path(user))}
   		it {should have_link('Sign out', href: signout_path)}
+      it { should have_link('Users', href: users_path) }
   		it {should_not have_link('Sign in', href: signin_path)}
 
       describe "followed by signout" do
@@ -76,11 +77,16 @@ describe "Authentication" do
               # response lets us test for the server response itself, in this case verifying that
               # the update action responds by redirecting to the signin page:
           end
+
+          describe "visiting the user index" do
+            before { visit users_path}
+            it { should have_title('Sign in')}
+          end
        end
 
        describe "when attempting to visit a protected page" do
          before do
-          visit edit_user_path(user)  # Want to get to the edit pag
+          visit edit_user_path(user)  # Want to get to the edit page (example of protected page)
           fill_in "Email", with: user.email  # Redirected to sign in - so fill it out
           fill_in "Password", with: user.password
           click_button "Sign in"  # Click sign in button. No want to be redirected to edit

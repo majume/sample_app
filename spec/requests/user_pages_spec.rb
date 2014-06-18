@@ -95,4 +95,23 @@ describe "UserPages" do
 
 		end
 	end
+
+	describe "index" do
+		before do
+			sign_in FactoryGirl.create(:user) # Creates the sign in user with default name
+			FactoryGirl.create(:user, name: "Bob", email: "bob@example.com")
+			FactoryGirl.create(:user, name: "Ben", email: "ben@example.com")
+				# Create another two users with different names/emails
+			visit users_path  # open the index page (run controller#index)
+		end
+
+		it { should have_title("All users") }
+		it { should have_content('All users') }
+
+		it "should list each user" do
+			User.all.each do |user|
+				expect(page).to have_selector('li', text: user.name)
+			end
+		end
+	end
 end
