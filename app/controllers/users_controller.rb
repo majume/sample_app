@@ -5,7 +5,16 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
 
   def index
-    @users = User.all
+    @users = User.paginate(page: params[:page])
+# Note that 'paginate' takes a hash argument with key :page and value equal
+  # to the page requested. User.paginate pulls the users out of the database
+  # one chunk at a time (30 by default), based on the :page parameter. So, for
+  # example, page 1 is users 1–30, page 2 is users 31–60, etc. If the page is nil,
+  # paginate simply returns the first page.
+  # Using the paginate method, we can paginate the users in the app/views/users/index.html.erb
+  # in place of 'Users.all' in the index action 
+  # Here the :page parameter comes from params[:page], which is generated automatically 
+  # by will_paginate.
   end
 
   def new

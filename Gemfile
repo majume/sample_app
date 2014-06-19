@@ -53,6 +53,11 @@ gem 'bcrypt-ruby', '3.1.2'
 # To create sample data in database
 gem 'faker', '1.1.2'
 
+# For pagination
+gem 'will_paginate', '3.0.4'
+gem 'bootstrap-will_paginate', '0.0.9'
+# gem 'will_paginate-foundation'  # To use Zurb foundation
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
