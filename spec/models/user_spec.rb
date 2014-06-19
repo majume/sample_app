@@ -15,6 +15,9 @@ describe User do
 	it {should respond_to(:authenticate)}
 
 	it {should be_valid}
+	it { should_not be_admin }  # Implies via RSpec boolean convention that the user
+									# should have an 'admin? boolean method'
+									# So this test that admin attribute should be false
 
 	describe "when name is not present" do
 		before {@user.name = ""}
@@ -121,6 +124,15 @@ describe User do
   	describe "remember_token is not blank" do
   		before {@user.save}
   		its(:remember_token) {should_not be_blank}
+  	end
+
+  	describe "with admin attribute set to 'true'" do
+  		before do 
+  			@user.save!
+  			@user.toggle! (:admin)	# Flips admin attribute from false to true
+  		end
+
+  		it { should be_admin }  # check that admin is set to true
   	end
 
   	

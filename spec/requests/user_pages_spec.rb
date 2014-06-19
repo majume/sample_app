@@ -122,5 +122,28 @@ describe "UserPages" do
 				end	
 			end
 		end
+
+		describe "delete links" do
+			it { should_not have_link('delete') }   # Regular user not an admin
+
+			describe "as an admin user" do
+				let(:admin) { FactoryGirl.create(:admin) }  # Create an admin user
+				before do
+					sign_in admin
+					visit user_path
+				end
+
+				it { should have_link('delete', href: user_path(User.first)) } 
+					# Admin user should have 'delete' link
+				it "should be able to delete another user" do
+					expect do
+						click_link('delete', match: :first) # Capybara click on first link it finds
+					end.to change(User, :count).by(-1)
+				end
+
+				it { should_not have_link('delete', href: user_path(admin)) }  # Admin user should
+						                         # NOT see a delete link next to his OWN name
+			end
+		end
 	end	
 end

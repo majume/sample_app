@@ -26,6 +26,12 @@ FactoryGirl.define do
 		  	# "Person 1" and email address "person_1@ooptonline.net."
 		password "foobar"
 		password_confirmation "foobar"
+
+		factory :admin do  
+			admin true
+		end
+		# 'factory :admin' is nested within 'factory :user', therefore the command
+			# 'FactoryGirl.create(:admin)' will create an administrative user in our tests
 	end
 end
 
